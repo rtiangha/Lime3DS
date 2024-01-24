@@ -5,10 +5,10 @@
 #version 450 core
 #extension GL_ARB_separate_shader_objects : enable
 
-layout (location = 0) in vec2 frag_tex_coord;
-layout (location = 0) out vec4 color;
+layout(location = 0) in vec2 frag_tex_coord;
+layout(location = 0) out vec4 color;
 
-layout (push_constant, std140) uniform DrawInfo {
+layout(push_constant, std140) uniform DrawInfo {
     mat4 modelview_matrix;
     vec4 i_resolution;
     vec4 o_resolution;
@@ -18,7 +18,19 @@ layout (push_constant, std140) uniform DrawInfo {
     int reverse_interlaced;
 };
 
-layout (set = 0, binding = 0) uniform sampler2D screen_textures[3];
+layout(set = 0, binding = 0) uniform sampler2D screen_textures[3];
+
+// Not all vulkan drivers support shaderSampledImageArrayDynamicIndexing, so index manually.
+vec4 GetScreen(int screen_id) {
+    switch (screen_id) {
+    case 0:
+        return texture(screen_textures[0], frag_tex_coord);
+    case 1:
+        return texture(screen_textures[1], frag_tex_coord);
+    case 2:
+        return texture(screen_textures[2], frag_tex_coord);
+    }
+}
 
 void main() {
     color = texture(screen_textures[screen_id_l], frag_tex_coord);
