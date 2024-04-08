@@ -1,4 +1,4 @@
-name: lime-build
+name: citra-build
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
       matrix:
         target: ["appimage", "fresh"]
     container:
-      image: polarzincomfrio/lime-build-environments:linux-${{ matrix.target }}
+      image: pablomk7/build-environments:linux-${{ matrix.target }}
       options: -u 1001
     env:
       CCACHE_DIR: ${{ github.workspace }}/.ccache
@@ -83,7 +83,7 @@ jobs:
       - name: Setup XCode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable  
+          xcode-version: latest-stable
       - name: Install tools
         run: brew install ccache ninja spirv-tools
       - name: Build
@@ -174,8 +174,12 @@ jobs:
             qt6-base:p qt6-multimedia:p qt6-multimedia-wmf:p qt6-tools:p qt6-translations:p
       - name: Disable line ending translation
         run: git config --global core.autocrlf input
-      - name: Build
-        run: ./.ci/windows.sh
+      - name: Build msys2
+        run: ./.ci/windows-msys2.sh
+        if: ${{ matrix.target == 'msys2' }}
+      - name: Build msvc
+        run: ./.ci/windows-msvc.sh
+        if: ${{ matrix.target == 'msvc' }}
       - name: Pack
         run: ./.ci/pack.sh
       - name: Upload
@@ -207,7 +211,7 @@ jobs:
             ${{ runner.os }}-android-
       - name: Set tag name
         run: |
-          if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+          if [[ "$GITHUB_REF_NAME" =~ ^canary- ]] || [[ "$GITHUB_REF_NAME" =~ ^nightly- ]]; then
               echo "GIT_TAG_NAME=$GITHUB_REF_NAME" >> $GITHUB_ENV
           fi
           echo $GIT_TAG_NAME
@@ -261,8 +265,6 @@ jobs:
       - name: Build
         run: ./.ci/ios.sh
   release:
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
     needs: [windows, linux, macos-universal, android, source]
     if: ${{ startsWith(github.ref, 'refs/tags/') }}
@@ -278,7 +280,7 @@ jobs:
           draft: false
           prerelease: false
       - name: Upload artifacts
-        uses: alexellis/upload-assets@0.4.1
+        uses: alexellis/upload-assets@0.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
