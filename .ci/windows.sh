@@ -1,5 +1,11 @@
 #!/bin/sh -ex
 
+if [ "$TARGET" = "msvc" ]; then
+    export EXTRA_CMAKE_FLAGS=(-DCMAKE_CXX_FLAGS="/O2" -DCMAKE_C_FLAGS="/O2")
+else
+    export EXTRA_CMAKE_FLAGS=(-DCMAKE_CXX_FLAGS="-O2" -DCMAKE_C_FLAGS="-O2")
+fi
+
 mkdir build && cd build
 cmake .. -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
