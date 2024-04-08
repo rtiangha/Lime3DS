@@ -38,6 +38,7 @@ bool EmuWindow_Android::OnSurfaceChanged(ANativeWindow* surface) {
 
     StopPresenting();
     OnFramebufferSizeChanged();
+
     return true;
 }
 
