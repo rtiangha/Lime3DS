@@ -299,6 +299,13 @@ endif()
 
 create_target_directory_groups(lime-qt)
 
+if (WIN32 OR (UNIX AND NOT APPLE AND NOT ANDROID))
+    find_package(OpenMP)
+    if(OpenMP_CXX_FOUND)
+        target_link_libraries(lime-qt PRIVATE OpenMP::OpenMP_CXX)
+    endif()
+endif()
+
 target_link_libraries(lime-qt PRIVATE audio_core lime_common lime_core input_common network video_core)
 target_link_libraries(lime-qt PRIVATE Boost::boost nihstro-headers Qt6::Widgets Qt6::Multimedia Qt6::Concurrent)
 target_link_libraries(lime-qt PRIVATE ${PLATFORM_LIBRARIES} Threads::Threads)
