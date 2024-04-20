@@ -73,19 +73,29 @@ GLenum MakeAttributeType(Pica::PipelineRegs::VertexAttributeFormat format) {
 
 } // Anonymous namespace
 
+static bool IsVendorMali() {
+    std::string gpu_vendor{reinterpret_cast<char const*>(glGetString(GL_VENDOR))};
+    return gpu_vendor.find("ARM") != std::string::npos;
+}
+
 RasterizerOpenGL::RasterizerOpenGL(Memory::MemorySystem& memory, Pica::PicaCore& pica,
                                    VideoCore::CustomTexManager& custom_tex_manager,
                                    VideoCore::RendererBase& renderer, Driver& driver_)
     : VideoCore::RasterizerAccelerated{memory, pica}, driver{driver_},
       shader_manager{renderer.GetRenderWindow(), driver, !driver.IsOpenGLES()},
       runtime{driver, renderer}, res_cache{memory, custom_tex_manager, runtime, regs, renderer},
-      texture_buffer_size{TextureBufferSize()}, vertex_buffer{driver, GL_ARRAY_BUFFER,
-                                                              VERTEX_BUFFER_SIZE},
+      texture_buffer_size{TextureBufferSize()},
+      vertex_buffer{driver, GL_ARRAY_BUFFER, VERTEX_BUFFER_SIZE},
       uniform_buffer{driver, GL_UNIFORM_BUFFER, UNIFORM_BUFFER_SIZE},
       index_buffer{driver, GL_ELEMENT_ARRAY_BUFFER, INDEX_BUFFER_SIZE},
-      texture_buffer{driver, GL_TEXTURE_BUFFER, texture_buffer_size}, texture_lf_buffer{
-                                                                          driver, GL_TEXTURE_BUFFER,
-                                                                          texture_buffer_size} {
+      texture_buffer{driver, GL_TEXTURE_BUFFER,
+                     IsVendorMali()
+                         ? (GL_MAX_TEXTURE_BUFFER_SIZE == 65536 ? 11264 : texture_buffer_size)
+                         : texture_buffer_size},
+      texture_lf_buffer{driver, GL_TEXTURE_BUFFER,
+                        IsVendorMali()
+                            ? (GL_MAX_TEXTURE_BUFFER_SIZE == 65536 ? 525312 : texture_buffer_size)
+                            : texture_buffer_size} {
 
     // Clipping plane 0 is always enabled for PICA fixed clip plane z <= 0
     state.clip_distance[0] = true;
@@ -965,10 +975,9 @@ void RasterizerOpenGL::SyncAndUploadLUTsLF() {
     if (fs_uniform_block_data.fog_lut_dirty || invalidate) {
         std::array<Common::Vec2f, 128> new_data;
 
-        std::transform(pica.fog.lut.begin(), pica.fog.lut.end(), new_data.begin(),
-                       [](const auto& entry) {
-                           return Common::Vec2f{entry.ToFloat(), entry.DiffToFloat()};
-                       });
+        std::transform(
+            pica.fog.lut.begin(), pica.fog.lut.end(), new_data.begin(),
+            [](const auto& entry) { return Common::Vec2f{entry.ToFloat(), entry.DiffToFloat()}; });
 
         if (new_data != fog_lut_data || invalidate) {
             fog_lut_data = new_data;
