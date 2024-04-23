@@ -7,7 +7,7 @@
 #include <fmt/format.h>
 #include "common/archives.h"
 #include "common/logging/log.h"
-#include "common/microprofile.h"
+#include "common/profiling.h"
 #include "common/scm_rev.h"
 #include "core/arm/arm_interface.h"
 #include "core/core.h"
@@ -264,10 +264,10 @@ enum class SystemInfoMemUsageRegion {
 
 /**
  * Accepted by svcGetSystemInfo param with CITRA_INFORMATION type. Selects which information
- * to fetch from Citra. Some string params don't fit in 7 bytes, so they are split.
+ * to fetch from Lime3DS. Some string params don't fit in 7 bytes, so they are split.
  */
 enum class SystemInfoCitraInformation {
-    IS_CITRA = 0,          // Always set the output to 1, signaling the app is running on Citra.
+    IS_CITRA = 0,          // Always set the output to 1, signaling the app is running on Lime3DS.
     BUILD_NAME = 10,       // (ie: Nightly, Canary).
     BUILD_VERSION = 11,    // Build version.
     BUILD_DATE_PART1 = 20, // Build date first 7 characters.
@@ -2233,10 +2233,8 @@ const SVC::FunctionDef* SVC::GetSVCInfo(u32 func_num) {
     return &SVC_Table[func_num];
 }
 
-MICROPROFILE_DEFINE(Kernel_SVC, "Kernel", "SVC", MP_RGB(70, 200, 70));
-
 void SVC::CallSVC(u32 immediate) {
-    MICROPROFILE_SCOPE(Kernel_SVC);
+    LIME3DS_PROFILE("Kernel", "SVC");
 
     // Lock the kernel mutex when we enter the kernel HLE.
     std::scoped_lock lock{kernel.GetHLELock()};

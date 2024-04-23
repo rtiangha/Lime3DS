@@ -9,7 +9,6 @@
 #include <QPainter>
 #include <QWindow>
 #include "common/color.h"
-#include "common/microprofile.h"
 #include "common/scm_rev.h"
 #include "common/settings.h"
 #include "core/3ds.h"
@@ -61,7 +60,6 @@ static GMainWindow* GetMainWindow() {
 }
 
 void EmuThread::run() {
-    MicroProfileOnThreadCreate("EmuThread");
     const auto scope = core_context.Acquire();
 
     if (Settings::values.preload_textures) {
@@ -131,10 +129,6 @@ void EmuThread::run() {
 
     // Shutdown the core emulation
     system.Shutdown();
-
-#if MICROPROFILE_ENABLED
-    MicroProfileOnThreadExit();
-#endif
 }
 
 #ifdef ENABLE_OPENGL

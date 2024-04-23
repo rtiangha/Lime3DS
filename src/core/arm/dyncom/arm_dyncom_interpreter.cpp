@@ -2,13 +2,13 @@
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
-#define CITRA_IGNORE_EXIT(x)
+#define LIME3DS_IGNORE_EXIT(x)
 
 #include <algorithm>
 #include <cstdio>
 #include "common/common_types.h"
 #include "common/logging/log.h"
-#include "common/microprofile.h"
+#include "common/profiling.h"
 #include "core/arm/dyncom/arm_dyncom_dec.h"
 #include "core/arm/dyncom/arm_dyncom_interpreter.h"
 #include "core/arm/dyncom/arm_dyncom_run.h"
@@ -232,7 +232,7 @@ static unsigned int DPO(RotateRightByRegister)(ARMul_State* cpu, unsigned int sh
 
 #define DEBUG_MSG                                                                                  \
     LOG_DEBUG(Core_ARM11, "inst is {:x}", inst);                                                   \
-    CITRA_IGNORE_EXIT(0)
+    LIME3DS_IGNORE_EXIT(0)
 
 #define LnSWoUB(s) glue(LnSWoUB, s)
 #define MLnS(s) glue(MLnS, s)
@@ -805,8 +805,6 @@ static ThumbDecodeStatus DecodeThumbInstruction(u32 inst, u32 addr, u32* arm_ins
 
 enum { KEEP_GOING, FETCH_EXCEPTION };
 
-MICROPROFILE_DEFINE(DynCom_Decode, "DynCom", "Decode", MP_RGB(255, 64, 64));
-
 static unsigned int InterpreterTranslateInstruction(const ARMul_State* cpu, const u32 phys_addr,
                                                     ARM_INST_PTR& inst_base) {
     u32 inst_size = 4;
@@ -832,7 +830,7 @@ static unsigned int InterpreterTranslateInstruction(const ARMul_State* cpu, cons
                   inst);
         LOG_ERROR(Core_ARM11, "cpsr={:#X}, cpu->TFlag={}, r15={:#010X}", cpu->Cpsr, cpu->TFlag,
                   cpu->Reg[15]);
-        CITRA_IGNORE_EXIT(-1);
+        LIME3DS_IGNORE_EXIT(-1);
     }
     inst_base = arm_instruction_trans[idx](inst, idx);
 
@@ -840,7 +838,7 @@ static unsigned int InterpreterTranslateInstruction(const ARMul_State* cpu, cons
 }
 
 static int InterpreterTranslateBlock(ARMul_State* cpu, std::size_t& bb_start, u32 addr) {
-    MICROPROFILE_SCOPE(DynCom_Decode);
+    LIME3DS_PROFILE("DynCom", "Decode");
 
     // Decode instruction, get index
     // Allocate memory and init InsCream
@@ -869,7 +867,7 @@ static int InterpreterTranslateBlock(ARMul_State* cpu, std::size_t& bb_start, u3
 }
 
 static int InterpreterTranslateSingle(ARMul_State* cpu, std::size_t& bb_start, u32 addr) {
-    MICROPROFILE_SCOPE(DynCom_Decode);
+    LIME3DS_PROFILE("DynCom", "Decode");
 
     ARM_INST_PTR inst_base = nullptr;
     bb_start = trans_cache_buf_top;
@@ -913,10 +911,8 @@ static int clz(unsigned int x) {
     return n;
 }
 
-MICROPROFILE_DEFINE(DynCom_Execute, "DynCom", "Execute", MP_RGB(255, 0, 0));
-
 unsigned InterpreterMainLoop(ARMul_State* cpu) {
-    MICROPROFILE_SCOPE(DynCom_Execute);
+    LIME3DS_PROFILE("DynCom", "Execute");
 
     /// Nearest upcoming GDB code execution breakpoint, relative to the last dispatch's address.
     GDBStub::BreakpointAddress breakpoint_data;
