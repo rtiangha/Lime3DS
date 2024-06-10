@@ -67,7 +67,7 @@ class EmulationActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        if (BooleanSetting.FORCE_MAX_GPU_CLOCKS.boolean) {
+        if (BooleanSetting.FORCE_MAX_GPU_CLOCK_SPEED.boolean) {
             NativeLibrary.enableAdrenoTurboMode(true) 
         }
 
@@ -127,7 +127,7 @@ class EmulationActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        if (BooleanSetting.FORCE_MAX_GPU_CLOCKS.boolean) {
+        if (BooleanSetting.FORCE_MAX_GPU_CLOCK_SPEED.boolean) {
             NativeLibrary.enableAdrenoTurboMode(false) 
         }
         EmulationLifecycleUtil.clear()
