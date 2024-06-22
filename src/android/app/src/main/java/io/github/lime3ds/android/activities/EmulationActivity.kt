@@ -33,6 +33,7 @@ import io.github.lime3ds.android.contracts.OpenFileResultContract
 import io.github.lime3ds.android.databinding.ActivityEmulationBinding
 import io.github.lime3ds.android.display.ScreenAdjustmentUtil
 import io.github.lime3ds.android.features.hotkeys.HotkeyUtility
+import io.github.lime3ds.android.features.settings.model.BooleanSetting
 import io.github.lime3ds.android.features.settings.model.SettingsViewModel
 import io.github.lime3ds.android.features.settings.model.view.InputBindingSetting
 import io.github.lime3ds.android.fragments.MessageDialogFragment
@@ -65,6 +66,8 @@ class EmulationActivity : AppCompatActivity() {
         settingsViewModel.settings.loadSettings()
 
         super.onCreate(savedInstanceState)
+
+        NativeLibrary.enableAdrenoTurboMode(BooleanSetting.ADRENO_GPU_BOOST.boolean)
 
         binding = ActivityEmulationBinding.inflate(layoutInflater)
         screenAdjustmentUtil = ScreenAdjustmentUtil(windowManager, settingsViewModel.settings)
@@ -122,6 +125,7 @@ class EmulationActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        NativeLibrary.enableAdrenoTurboMode(false)
         EmulationLifecycleUtil.clear()
         isEmulationRunning = false
         instance = null
