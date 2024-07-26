@@ -92,8 +92,8 @@ void CubebInput::StartSampling(const InputParameters& params) {
     }
 
     auto stream_init_result = cubeb_stream_init(
-        impl->ctx, &impl->stream, "Lime3DS Microphone", input_device, &input_params, nullptr, nullptr,
-        latency_frames, Impl::DataCallback, Impl::StateCallback, impl.get());
+        impl->ctx, &impl->stream, "Lime3DS Microphone", input_device, &input_params, nullptr,
+        nullptr, latency_frames, Impl::DataCallback, Impl::StateCallback, impl.get());
     if (stream_init_result != CUBEB_OK) {
         LOG_CRITICAL(Audio, "cubeb_stream_init failed: {}", stream_init_result);
         StopSampling();

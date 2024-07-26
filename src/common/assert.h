@@ -17,7 +17,7 @@
 #define ASSERT(_a_)                                                                                \
     do                                                                                             \
         if (!(_a_)) [[unlikely]] {                                                                 \
-            []() LIME3DS_NO_INLINE LIME3DS_NO_RETURN {                                                 \
+            []() LIME3DS_NO_INLINE LIME3DS_NO_RETURN {                                             \
                 LOG_CRITICAL(Debug, "Assertion Failed!");                                          \
                 Common::Log::Stop();                                                               \
                 Crash();                                                                           \
@@ -29,7 +29,7 @@
 #define ASSERT_MSG(_a_, ...)                                                                       \
     do                                                                                             \
         if (!(_a_)) [[unlikely]] {                                                                 \
-            [&]() LIME3DS_NO_INLINE LIME3DS_NO_RETURN {                                                \
+            [&]() LIME3DS_NO_INLINE LIME3DS_NO_RETURN {                                            \
                 LOG_CRITICAL(Debug, "Assertion Failed!\n" __VA_ARGS__);                            \
                 Common::Log::Stop();                                                               \
                 Crash();                                                                           \
@@ -39,7 +39,7 @@
     while (0)
 
 #define UNREACHABLE()                                                                              \
-    ([]() LIME3DS_NO_INLINE LIME3DS_NO_RETURN {                                                        \
+    ([]() LIME3DS_NO_INLINE LIME3DS_NO_RETURN {                                                    \
         LOG_CRITICAL(Debug, "Unreachable code!");                                                  \
         Common::Log::Stop();                                                                       \
         Crash();                                                                                   \
@@ -47,7 +47,7 @@
     }())
 
 #define UNREACHABLE_MSG(...)                                                                       \
-    ([&]() LIME3DS_NO_INLINE LIME3DS_NO_RETURN {                                                       \
+    ([&]() LIME3DS_NO_INLINE LIME3DS_NO_RETURN {                                                   \
         LOG_CRITICAL(Debug, "Unreachable code!\n" __VA_ARGS__);                                    \
         Common::Log::Stop();                                                                       \
         Crash();                                                                                   \

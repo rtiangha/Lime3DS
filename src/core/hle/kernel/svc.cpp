@@ -268,7 +268,7 @@ enum class SystemInfoMemUsageRegion {
  * to fetch from Lime3DS. Some string params don't fit in 7 bytes, so they are split.
  */
 enum class SystemInfoLime3DSInformation {
-    IS_LIME3DS = 0,          // Always set the output to 1, signaling the app is running on Lime3DS.
+    IS_LIME3DS = 0,        // Always set the output to 1, signaling the app is running on Lime3DS.
     BUILD_NAME = 10,       // (ie: Nightly, Canary).
     BUILD_VERSION = 11,    // Build version.
     BUILD_DATE_PART1 = 20, // Build date first 7 characters.

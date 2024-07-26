@@ -1216,7 +1216,8 @@ void RasterizerCache<T>::ClearAll(bool flush) {
         const auto interval = pair.first & flush_interval;
 
         const PAddr interval_start_addr = boost::icl::first(interval) << Memory::LIME3DS_PAGE_BITS;
-        const PAddr interval_end_addr = boost::icl::last_next(interval) << Memory::LIME3DS_PAGE_BITS;
+        const PAddr interval_end_addr = boost::icl::last_next(interval)
+                                        << Memory::LIME3DS_PAGE_BITS;
         const u32 interval_size = interval_end_addr - interval_start_addr;
 
         memory.RasterizerMarkRegionCached(interval_start_addr, interval_size, false);
@@ -1425,7 +1426,8 @@ void RasterizerCache<T>::UpdatePagesCachedCount(PAddr addr, u32 size, int delta)
         const int count = pair.second;
 
         const PAddr interval_start_addr = boost::icl::first(interval) << Memory::LIME3DS_PAGE_BITS;
-        const PAddr interval_end_addr = boost::icl::last_next(interval) << Memory::LIME3DS_PAGE_BITS;
+        const PAddr interval_end_addr = boost::icl::last_next(interval)
+                                        << Memory::LIME3DS_PAGE_BITS;
         const u32 interval_size = interval_end_addr - interval_start_addr;
 
         if (delta > 0 && count == delta) {

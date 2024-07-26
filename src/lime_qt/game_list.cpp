@@ -780,7 +780,8 @@ void GameList::AddGamePopup(QMenu& context_menu, const QString& path, const QStr
     });
     connect(uninstall_dlc, &QAction::triggered, this, [this, name, dlc_program_id] {
         QMessageBox::StandardButton answer = QMessageBox::question(
-            this, tr("Lime3DS"), tr("Are you sure you want to uninstall all DLC for '%1'?").arg(name),
+            this, tr("Lime3DS"),
+            tr("Are you sure you want to uninstall all DLC for '%1'?").arg(name),
             QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
         if (answer == QMessageBox::Yes) {
             std::vector<std::tuple<Service::FS::MediaType, u64, QString>> titles;

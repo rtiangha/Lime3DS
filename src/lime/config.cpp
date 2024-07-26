@@ -338,7 +338,8 @@ void Config::ReadValues() {
     // Web Service
     NetSettings::values.web_api_url =
         sdl2_config->GetString("WebService", "web_api_url", "https://api.citra-emu.org");
-    NetSettings::values.lime3ds_username = sdl2_config->GetString("WebService", "lime3ds_username", "");
+    NetSettings::values.lime3ds_username =
+        sdl2_config->GetString("WebService", "lime3ds_username", "");
     NetSettings::values.lime3ds_token = sdl2_config->GetString("WebService", "lime3ds_token", "");
 
     // Video Dumping

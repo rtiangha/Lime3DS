@@ -215,8 +215,9 @@ Result TranslateCommandBuffer(Kernel::KernelSystem& kernel, Memory::MemorySystem
 
             // Change the permissions and state of the guard pages.
             const VAddr low_guard_address = target_address;
-            const VAddr high_guard_address =
-                low_guard_address + static_cast<VAddr>(buffer->GetSize()) - Memory::LIME3DS_PAGE_SIZE;
+            const VAddr high_guard_address = low_guard_address +
+                                             static_cast<VAddr>(buffer->GetSize()) -
+                                             Memory::LIME3DS_PAGE_SIZE;
             ASSERT(dst_process->vm_manager.ChangeMemoryState(
                        low_guard_address, Memory::LIME3DS_PAGE_SIZE, Kernel::MemoryState::Shared,
                        Kernel::VMAPermission::ReadWrite, Kernel::MemoryState::Reserved,

@@ -33,7 +33,7 @@ struct RoomInformation {
     std::string preferred_game; ///< Game to advertise that you want to play
     u64 preferred_game_id;      ///< Title ID for the advertised game
     std::string host_username;  ///< Forum username of the host
-    bool enable_lime3ds_mods;     ///< Allow Lime3DS Moderators to moderate on this room
+    bool enable_lime3ds_mods;   ///< Allow Lime3DS Moderators to moderate on this room
 };
 
 struct GameInfo {

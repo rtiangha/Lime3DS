@@ -1932,8 +1932,9 @@ bool GMainWindow::MakeShortcutIcoPath(const u64 program_id, const std::string_vi
     }
 
     // Create icon file path
-    out_icon_path /= (program_id == 0 ? fmt::format("lime3ds-{}.{}", game_file_name, ico_extension)
-                                      : fmt::format("lime3ds-{:016X}.{}", program_id, ico_extension));
+    out_icon_path /=
+        (program_id == 0 ? fmt::format("lime3ds-{}.{}", game_file_name, ico_extension)
+                         : fmt::format("lime3ds-{:016X}.{}", program_id, ico_extension));
     return true;
 }
 
@@ -1944,7 +1945,8 @@ void GMainWindow::OnGameListCreateShortcut(u64 program_id, const std::string& ga
     std::filesystem::path lime3ds_command = args[0].toStdString();
     // If relative path, make it an absolute path
     if (lime3ds_command.c_str()[0] == '.') {
-        lime3ds_command = FileUtil::GetCurrentDir().value_or("") + DIR_SEP + lime3ds_command.string();
+        lime3ds_command =
+            FileUtil::GetCurrentDir().value_or("") + DIR_SEP + lime3ds_command.string();
     }
 
     // Shortcut path
@@ -2372,7 +2374,8 @@ void GMainWindow::OnLoadComplete() {
 }
 
 void GMainWindow::OnMenuReportCompatibility() {
-    if (!NetSettings::values.lime3ds_token.empty() && !NetSettings::values.lime3ds_username.empty()) {
+    if (!NetSettings::values.lime3ds_token.empty() &&
+        !NetSettings::values.lime3ds_username.empty()) {
         CompatDB compatdb{this};
         compatdb.exec();
     } else {
