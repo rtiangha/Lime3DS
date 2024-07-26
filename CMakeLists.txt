@@ -93,7 +93,7 @@ option(ENABLE_LTO "Enable link time optimization" ${DEFAULT_ENABLE_LTO})
 option(LIME3DS_USE_PRECOMPILED_HEADERS "Use precompiled headers" ON)
 option(LIME3DS_WARNINGS_AS_ERRORS "Enable warnings as errors" ON)
 
-include(CitraHandleSystemLibs)
+include(Lime3DSHandleSystemLibs)
 
 if (LIME3DS_USE_PRECOMPILED_HEADERS)
     message(STATUS "Using Precompiled Headers.")

@@ -1,4 +1,5 @@
 // Copyright 2017 Citra Emulator Project
+// Copyright 2024 Lime3DS Emulator Project
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
@@ -53,21 +54,21 @@ static void PrintHelp(const char* argv0) {
                  "--preferred-game-id The preferred game-id for this room\n"
                  "--username          The username used for announce\n"
                  "--token             The token used for announce\n"
-                 "--web-api-url       Citra Web API url\n"
+                 "--web-api-url       Lime3DS Web API url\n"
                  "--ban-list-file     The file for storing the room ban list\n"
                  "--log-file          The file for storing the room log\n"
-                 "--enable-lime3ds-mods Allow Citra Community Moderators to moderate on your room\n"
+                 "--enable-lime3ds-mods Allow Lime3DS Community Moderators to moderate on your room\n"
                  "-h, --help          Display this help and exit\n"
                  "-v, --version       Output version information and exit\n";
 }
 
 static void PrintVersion() {
-    std::cout << "Citra dedicated room " << Common::g_scm_branch << " " << Common::g_scm_desc
+    std::cout << "Lime3DS dedicated room " << Common::g_scm_branch << " " << Common::g_scm_desc
               << " Libnetwork: " << Network::network_version << std::endl;
 }
 
 /// The magic text at the beginning of a lime-room ban list file.
-static constexpr char BanListMagic[] = "CitraRoom-BanList-1";
+static constexpr char BanListMagic[] = "Lime3DSRoom-BanList-1";
 
 static constexpr char token_delimiter{':'};
 
@@ -301,7 +302,7 @@ int main(int argc, char** argv) {
     }
     if (!announce && enable_lime3ds_mods) {
         enable_lime3ds_mods = false;
-        std::cout << "Can not enable Citra Moderators for private rooms\n\n";
+        std::cout << "Can not enable Lime3DS Moderators for private rooms\n\n";
     }
 
     InitializeLogging(log_file);
@@ -319,7 +320,7 @@ int main(int argc, char** argv) {
             std::make_unique<WebService::VerifyUserJWT>(NetSettings::values.web_api_url);
 #else
         std::cout
-            << "Citra Web Services is not available with this build: validation is disabled.\n\n";
+            << "Lime3DS Web Services is not available with this build: validation is disabled.\n\n";
         verify_backend = std::make_unique<Network::VerifyUser::NullBackend>();
 #endif
     } else {

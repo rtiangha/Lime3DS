@@ -1,4 +1,5 @@
 // Copyright 2023 Citra Emulator Project
+// Copyright 2024 Lime3DS Emulator Project
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
@@ -159,7 +160,7 @@ class HomeSettingsFragment : Fragment() {
                 R.string.select_lime3ds_user_folder,
                 R.string.select_lime3ds_user_folder_home_description,
                 R.drawable.ic_home,
-                { mainActivity.openCitraDirectory.launch(null) },
+                { mainActivity.openLime3DSDirectory.launch(null) },
                 details = homeViewModel.userDir
             ),
             HomeSetting(

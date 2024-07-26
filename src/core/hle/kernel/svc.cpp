@@ -1,4 +1,5 @@
 // Copyright 2014 Citra Emulator Project
+// Copyright 2024 Lime3DS Emulator Project
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
@@ -264,10 +265,10 @@ enum class SystemInfoMemUsageRegion {
 
 /**
  * Accepted by svcGetSystemInfo param with LIME3DS_INFORMATION type. Selects which information
- * to fetch from Citra. Some string params don't fit in 7 bytes, so they are split.
+ * to fetch from Lime3DS. Some string params don't fit in 7 bytes, so they are split.
  */
-enum class SystemInfoCitraInformation {
-    IS_LIME3DS = 0,          // Always set the output to 1, signaling the app is running on Citra.
+enum class SystemInfoLime3DSInformation {
+    IS_LIME3DS = 0,          // Always set the output to 1, signaling the app is running on Lime3DS.
     BUILD_NAME = 10,       // (ie: Nightly, Canary).
     BUILD_VERSION = 11,    // Build version.
     BUILD_DATE_PART1 = 20, // Build date first 7 characters.
@@ -1736,45 +1737,45 @@ Result SVC::GetSystemInfo(s64* out, u32 type, s32 param) {
         *out = 0;
         return (system.GetNumCores() == 4) ? ResultSuccess : ResultInvalidEnumValue;
     case SystemInfoType::LIME3DS_INFORMATION:
-        switch ((SystemInfoCitraInformation)param) {
-        case SystemInfoCitraInformation::IS_LIME3DS:
+        switch ((SystemInfoLime3DSInformation)param) {
+        case SystemInfoLime3DSInformation::IS_LIME3DS:
             *out = 1;
             break;
-        case SystemInfoCitraInformation::BUILD_NAME:
+        case SystemInfoLime3DSInformation::BUILD_NAME:
             CopyStringPart(reinterpret_cast<char*>(out), Common::g_build_name, 0, sizeof(s64));
             break;
-        case SystemInfoCitraInformation::BUILD_VERSION:
+        case SystemInfoLime3DSInformation::BUILD_VERSION:
             CopyStringPart(reinterpret_cast<char*>(out), Common::g_build_version, 0, sizeof(s64));
             break;
-        case SystemInfoCitraInformation::BUILD_DATE_PART1:
+        case SystemInfoLime3DSInformation::BUILD_DATE_PART1:
             CopyStringPart(reinterpret_cast<char*>(out), Common::g_build_date,
                            (sizeof(s64) - 1) * 0, sizeof(s64));
             break;
-        case SystemInfoCitraInformation::BUILD_DATE_PART2:
+        case SystemInfoLime3DSInformation::BUILD_DATE_PART2:
             CopyStringPart(reinterpret_cast<char*>(out), Common::g_build_date,
                            (sizeof(s64) - 1) * 1, sizeof(s64));
             break;
-        case SystemInfoCitraInformation::BUILD_DATE_PART3:
+        case SystemInfoLime3DSInformation::BUILD_DATE_PART3:
             CopyStringPart(reinterpret_cast<char*>(out), Common::g_build_date,
                            (sizeof(s64) - 1) * 2, sizeof(s64));
             break;
-        case SystemInfoCitraInformation::BUILD_DATE_PART4:
+        case SystemInfoLime3DSInformation::BUILD_DATE_PART4:
             CopyStringPart(reinterpret_cast<char*>(out), Common::g_build_date,
                            (sizeof(s64) - 1) * 3, sizeof(s64));
             break;
-        case SystemInfoCitraInformation::BUILD_GIT_BRANCH_PART1:
+        case SystemInfoLime3DSInformation::BUILD_GIT_BRANCH_PART1:
             CopyStringPart(reinterpret_cast<char*>(out), Common::g_scm_branch,
                            (sizeof(s64) - 1) * 0, sizeof(s64));
             break;
-        case SystemInfoCitraInformation::BUILD_GIT_BRANCH_PART2:
+        case SystemInfoLime3DSInformation::BUILD_GIT_BRANCH_PART2:
             CopyStringPart(reinterpret_cast<char*>(out), Common::g_scm_branch,
                            (sizeof(s64) - 1) * 1, sizeof(s64));
             break;
-        case SystemInfoCitraInformation::BUILD_GIT_DESCRIPTION_PART1:
+        case SystemInfoLime3DSInformation::BUILD_GIT_DESCRIPTION_PART1:
             CopyStringPart(reinterpret_cast<char*>(out), Common::g_scm_desc, (sizeof(s64) - 1) * 0,
                            sizeof(s64));
             break;
-        case SystemInfoCitraInformation::BUILD_GIT_DESCRIPTION_PART2:
+        case SystemInfoLime3DSInformation::BUILD_GIT_DESCRIPTION_PART2:
             CopyStringPart(reinterpret_cast<char*>(out), Common::g_scm_desc, (sizeof(s64) - 1) * 1,
                            sizeof(s64));
             break;

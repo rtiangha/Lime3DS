@@ -1,4 +1,5 @@
 // Copyright 2019 Citra Emulator Project
+// Copyright 2024 Lime3DS Emulator Project
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
@@ -130,7 +131,7 @@ static bool CheckMicPermission() {
                                                                IDCache::GetRequestMicPermission());
 }
 
-static Core::System::ResultStatus RunCitra(const std::string& filepath) {
+static Core::System::ResultStatus RunLime3DS(const std::string& filepath) {
     // Lime3DS core only supports a single running instance
     std::scoped_lock lock(running_mutex);
 
@@ -522,7 +523,7 @@ jboolean Java_io_github_lime3ds_android_NativeLibrary_onGamePadMoveEvent(
     [[maybe_unused]] JNIEnv* env, [[maybe_unused]] jobject obj, [[maybe_unused]] jstring j_device,
     jint axis, jfloat x, jfloat y) {
     // Clamp joystick movement to supported minimum and maximum
-    // Citra uses an inverted y axis sent by the frontend
+    // Lime3DS uses an inverted y axis sent by the frontend
     x = std::clamp(x, -1.f, 1.f);
     y = std::clamp(-y, -1.f, 1.f);
 
@@ -649,7 +650,7 @@ void Java_io_github_lime3ds_android_NativeLibrary_run__Ljava_lang_String_2(
         running_cv.notify_all();
     }
 
-    const Core::System::ResultStatus result{RunCitra(path)};
+    const Core::System::ResultStatus result{RunLime3DS(path)};
     if (result != Core::System::ResultStatus::Success) {
         env->CallStaticVoidMethod(IDCache::GetNativeLibraryClass(),
                                   IDCache::GetExitEmulationActivity(), static_cast<int>(result));

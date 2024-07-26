@@ -1,4 +1,5 @@
 // Copyright 2023 Citra Emulator Project
+// Copyright 2024 Lime3DS Emulator Project
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
@@ -15,13 +16,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.github.lime3ds.android.R
-import io.github.lime3ds.android.databinding.DialogCitraDirectoryBinding
+import io.github.lime3ds.android.databinding.DialogLime3DSDirectoryBinding
 import io.github.lime3ds.android.ui.main.MainActivity
 import io.github.lime3ds.android.utils.PermissionsHandler
 import io.github.lime3ds.android.viewmodel.HomeViewModel
 
-class CitraDirectoryDialogFragment : DialogFragment() {
-    private lateinit var binding: DialogCitraDirectoryBinding
+class Lime3DSDirectoryDialogFragment : DialogFragment() {
+    private lateinit var binding: DialogLime3DSDirectoryBinding
 
     private val homeViewModel: HomeViewModel by activityViewModels()
 
@@ -30,7 +31,7 @@ class CitraDirectoryDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = DialogCitraDirectoryBinding.inflate(layoutInflater)
+        binding = DialogLime3DSDirectoryBinding.inflate(layoutInflater)
 
         val path = Uri.parse(requireArguments().getString(PATH))
 
@@ -60,7 +61,7 @@ class CitraDirectoryDialogFragment : DialogFragment() {
             }
             .setNegativeButton(android.R.string.cancel) { _: DialogInterface?, _: Int ->
                 if (!PermissionsHandler.hasWriteAccess(requireContext())) {
-                    (requireActivity() as MainActivity).openCitraDirectory.launch(null)
+                    (requireActivity() as MainActivity).openLime3DSDirectory.launch(null)
                 }
             }
             .show()
@@ -80,8 +81,8 @@ class CitraDirectoryDialogFragment : DialogFragment() {
             activity: FragmentActivity,
             path: String,
             listener: Listener
-        ): CitraDirectoryDialogFragment {
-            val dialog = CitraDirectoryDialogFragment()
+        ): Lime3DSDirectoryDialogFragment {
+            val dialog = Lime3DSDirectoryDialogFragment()
             ViewModelProvider(activity)[HomeViewModel::class.java].directoryListener = listener
             val args = Bundle()
             args.putString(PATH, path)

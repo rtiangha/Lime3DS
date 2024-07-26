@@ -1,4 +1,5 @@
 // Copyright 2013 Dolphin Emulator Project / 2015 Citra Emulator Project
+// Copyright 2024 Lime3DS Emulator Project
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
@@ -53,7 +54,7 @@ static CPUCaps Detect() {
     CPUCaps caps = {};
 
     // Assumes the CPU supports the CPUID instruction. Those that don't would likely not support
-    // Citra at all anyway
+    // Lime3DS at all anyway
 
     int cpu_id[4];
     std::memset(caps.brand_string, 0, sizeof(caps.brand_string));

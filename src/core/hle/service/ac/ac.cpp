@@ -1,4 +1,5 @@
 // Copyright 2016 Citra Emulator Project
+// Copyright 2024 Lime3DS Emulator Project
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
@@ -120,7 +121,7 @@ void Module::Interface::GetCurrentAPInfo(Kernel::HLERequestContext& ctx) {
         return;
     }
 
-    constexpr const char* lime3ds_ap = "Citra_AP";
+    constexpr const char* lime3ds_ap = "Lime3DS_AP";
     constexpr s16 good_signal_strength = 60;
     constexpr u8 unknown1_value = 6;
     constexpr u8 unknown2_value = 5;

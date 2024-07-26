@@ -1,4 +1,5 @@
 // Copyright 2017 Citra Emulator Project
+// Copyright 2024 Lime3DS Emulator Project
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
@@ -53,7 +54,7 @@ HostRoomWindow::HostRoomWindow(Core::System& system_, QWidget* parent, QStandard
     // Restore the settings:
     ui->username->setText(UISettings::values.room_nickname);
     if (ui->username->text().isEmpty() && !NetSettings::values.lime3ds_username.empty()) {
-        // Use Citra Web Service user name as nickname by default
+        // Use Lime3DS Web Service user name as nickname by default
         ui->username->setText(QString::fromStdString(NetSettings::values.lime3ds_username));
     }
     ui->room_name->setText(UISettings::values.room_name);
@@ -163,7 +164,7 @@ void HostRoomWindow::Host() {
                     QMessageBox::warning(
                         this, tr("Error"),
                         tr("Failed to announce the room to the public lobby. In order to host a "
-                           "room publicly, you must have a valid Citra account configured in "
+                           "room publicly, you must have a valid Lime3DS account configured in "
                            "Emulation -> Configure -> Web. If you do not want to publish a room in "
                            "the public lobby, then select Unlisted instead.\nDebug Message: ") +
                             QString::fromStdString(result.result_string),

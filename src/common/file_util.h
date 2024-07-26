@@ -1,4 +1,5 @@
 // Copyright 2013 Dolphin Emulator Project / 2014 Citra Emulator Project
+// Copyright 2024 Lime3DS Emulator Project
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
@@ -188,11 +189,11 @@ void SetUserPath(const std::string& path = "");
 
 void SetCurrentRomPath(const std::string& path);
 
-// Returns a pointer to a string with a Citra data dir in the user's home
+// Returns a pointer to a string with a Lime3DS data dir in the user's home
 // directory. To be used in "multi-user" mode (that is, installed).
 [[nodiscard]] const std::string& GetUserPath(UserPath path);
 
-// Returns a pointer to a string with the default Citra data dir in the user's home
+// Returns a pointer to a string with the default Lime3DS data dir in the user's home
 // directory.
 [[nodiscard]] const std::string& GetDefaultUserPath(UserPath path);
 

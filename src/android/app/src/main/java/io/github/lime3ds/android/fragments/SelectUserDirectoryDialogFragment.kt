@@ -1,4 +1,5 @@
 // Copyright 2023 Citra Emulator Project
+// Copyright 2024 Lime3DS Emulator Project
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
@@ -26,7 +27,7 @@ class SelectUserDirectoryDialogFragment : DialogFragment() {
             .setTitle(R.string.select_lime3ds_user_folder)
             .setMessage(R.string.cannot_skip_directory_description)
             .setPositiveButton(android.R.string.ok) { _: DialogInterface, _: Int ->
-                mainActivity.openCitraDirectory.launch(null)
+                mainActivity.openLime3DSDirectory.launch(null)
             }
             .show()
     }
