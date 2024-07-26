@@ -79,7 +79,7 @@
 #include "lime_qt/util/clickable_label.h"
 #include "lime_qt/util/graphics_device_info.h"
 #include "lime_qt/util/util.h"
-#if CITRA_ARCH(x86_64)
+#if LIME3DS_ARCH(x86_64)
 #include "common/x64/cpu_detect.h"
 #endif
 #include "common/settings.h"
@@ -224,7 +224,7 @@ GMainWindow::GMainWindow(Core::System& system_)
 
     LOG_INFO(Frontend, "Lime3DS Version: {} | {}-{}", Common::g_build_fullname,
              Common::g_scm_branch, Common::g_scm_desc);
-#if CITRA_ARCH(x86_64)
+#if LIME3DS_ARCH(x86_64)
     const auto& caps = Common::GetCPUCaps();
     std::string cpu_string = caps.cpu_string;
     if (caps.avx || caps.avx2 || caps.avx512) {
@@ -339,7 +339,7 @@ GMainWindow::~GMainWindow() {
 }
 
 void GMainWindow::InitializeWidgets() {
-#ifdef CITRA_ENABLE_COMPATIBILITY_REPORTING
+#ifdef LIME3DS_ENABLE_COMPATIBILITY_REPORTING
     ui->action_Report_Compatibility->setVisible(true);
 #endif
     render_window = new GRenderWindow(this, emu_thread.get(), system, false);

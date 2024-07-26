@@ -32,7 +32,7 @@ class HomeViewModel : ViewModel() {
     private val _userDir = MutableStateFlow(
         Uri.parse(
             PreferenceManager.getDefaultSharedPreferences(LimeApplication.appContext)
-                .getString(PermissionsHandler.CITRA_DIRECTORY, "")
+                .getString(PermissionsHandler.LIME3DS_DIRECTORY, "")
         ).path ?: ""
     )
 
