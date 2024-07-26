@@ -16,13 +16,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.github.lime3ds.android.R
-import io.github.lime3ds.android.databinding.DialogLime3DSDirectoryBinding
+import io.github.lime3ds.android.databinding.DialogLime3dsDirectoryBinding
 import io.github.lime3ds.android.ui.main.MainActivity
 import io.github.lime3ds.android.utils.PermissionsHandler
 import io.github.lime3ds.android.viewmodel.HomeViewModel
 
 class Lime3DSDirectoryDialogFragment : DialogFragment() {
-    private lateinit var binding: DialogLime3DSDirectoryBinding
+    private lateinit var binding: DialogLime3dsDirectoryBinding
 
     private val homeViewModel: HomeViewModel by activityViewModels()
 
@@ -31,7 +31,7 @@ class Lime3DSDirectoryDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = DialogLime3DSDirectoryBinding.inflate(layoutInflater)
+        binding = DialogLime3dsDirectoryBinding.inflate(layoutInflater)
 
         val path = Uri.parse(requireArguments().getString(PATH))
 
