@@ -207,8 +207,8 @@ class SetupFragment : Fragment() {
             add(
                 SetupPage(
                     R.drawable.ic_home,
-                    R.string.select_citra_user_folder,
-                    R.string.select_citra_user_folder_description,
+                    R.string.select_lime3ds_user_folder,
+                    R.string.select_lime3ds_user_folder_description,
                     0,
                     true,
                     R.string.select,

@@ -79,7 +79,7 @@ class CopyDirProgressDialog : DialogFragment() {
                         if (it) {
                             homeViewModel.setUserDir(
                                 requireActivity(),
-                                PermissionsHandler.citraDirectory.path!!
+                                PermissionsHandler.lime3dsDirectory.path!!
                             )
                             homeViewModel.copyInProgress = false
                             homeViewModel.setPickingUserDir(false)

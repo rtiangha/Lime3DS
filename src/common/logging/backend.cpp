@@ -260,7 +260,7 @@ private:
         backtrace_thread_waker_fd = waker_pipefd[1];
         backtrace_done_printing_fd = done_printing_pipefd[0];
         std::thread([this, wait_fd = waker_pipefd[0], done_fd = done_printing_pipefd[1]] {
-            Common::SetCurrentThreadName("citra:Crash");
+            Common::SetCurrentThreadName("lime3ds:Crash");
             for (u8 ignore = 0; read(wait_fd, &ignore, 1) != 1;)
                 ;
             const int sig = received_signal;
@@ -315,7 +315,7 @@ private:
 
     void StartBackendThread() {
         backend_thread = std::jthread([this](std::stop_token stop_token) {
-            Common::SetCurrentThreadName("citra:Log");
+            Common::SetCurrentThreadName("lime3ds:Log");
             Entry entry;
             const auto write_logs = [this, &entry]() {
                 ForEachBackend([&entry](Backend& backend) { backend.Write(entry); });

@@ -18,11 +18,11 @@ import io.github.lime3ds.android.viewmodel.HomeViewModel
  */
 class CitraDirectoryHelper(private val fragmentActivity: FragmentActivity) {
     fun showCitraDirectoryDialog(result: Uri, callback: SetupCallback? = null) {
-        val citraDirectoryDialog = CitraDirectoryDialogFragment.newInstance(
+        val lime3dsDirectoryDialog = CitraDirectoryDialogFragment.newInstance(
             fragmentActivity,
             result.toString(),
             CitraDirectoryDialogFragment.Listener { moveData: Boolean, path: Uri ->
-                val previous = PermissionsHandler.citraDirectory
+                val previous = PermissionsHandler.lime3dsDirectory
                 // Do noting if user select the previous path.
                 if (path == previous) {
                     return@Listener
@@ -47,7 +47,7 @@ class CitraDirectoryHelper(private val fragmentActivity: FragmentActivity) {
                 CopyDirProgressDialog.newInstance(fragmentActivity, previous, path, callback)
                     ?.show(fragmentActivity.supportFragmentManager, CopyDirProgressDialog.TAG)
             })
-        citraDirectoryDialog.show(
+        lime3dsDirectoryDialog.show(
             fragmentActivity.supportFragmentManager,
             CitraDirectoryDialogFragment.TAG
         )

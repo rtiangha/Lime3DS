@@ -91,7 +91,7 @@ object DirectoryInitialization {
         }
 
     fun setCitraUserDirectory(): Boolean {
-        val dataPath = PermissionsHandler.citraDirectory
+        val dataPath = PermissionsHandler.lime3dsDirectory
         if (dataPath.toString().isNotEmpty()) {
             userPath = dataPath.toString()
             android.util.Log.d("[Citra Frontend]", "[DirectoryInitialization] User Dir: $userPath")

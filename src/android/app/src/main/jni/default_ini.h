@@ -290,7 +290,7 @@ region_value =
 # 6: Simplified Chinese, 7: Korean, 8: Dutch, 9: Portuguese, 10: Russian, 11: Traditional Chinese
 language =
 
-# The clock to use when citra starts
+# The clock to use when lime3ds starts
 # 0: System clock (default), 1: fixed time
 init_clock =
 
@@ -299,7 +299,7 @@ init_clock =
 # Note: 3DS can only handle times later then Jan 1 2000
 init_time =
 
-# The system ticks count to use when citra starts
+# The system ticks count to use when lime3ds starts
 # 0: Random (default), 1: Fixed
 init_ticks_type =
 
@@ -364,7 +364,7 @@ gdbstub_port=24689
 web_api_url = https://api.citra-emu.org
 # Username and token for Citra Web Service
 # See https://profile.citra-emu.org/ for more info
-citra_username =
-citra_token =
+lime3ds_username =
+lime3ds_token =
 )";
 }

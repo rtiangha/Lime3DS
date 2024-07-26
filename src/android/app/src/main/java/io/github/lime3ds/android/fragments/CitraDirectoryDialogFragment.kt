@@ -35,7 +35,7 @@ class CitraDirectoryDialogFragment : DialogFragment() {
         val path = Uri.parse(requireArguments().getString(PATH))
 
         binding.checkBox.isChecked = savedInstanceState?.getBoolean(MOVE_DATE_ENABLE) ?: false
-        val oldPath = PermissionsHandler.citraDirectory
+        val oldPath = PermissionsHandler.lime3dsDirectory
         if (!PermissionsHandler.hasWriteAccess(requireActivity()) ||
             oldPath.toString() == path.toString()
         ) {
@@ -47,7 +47,7 @@ class CitraDirectoryDialogFragment : DialogFragment() {
         isCancelable = false
         return MaterialAlertDialogBuilder(requireContext())
             .setView(binding.root)
-            .setTitle(R.string.select_citra_user_folder)
+            .setTitle(R.string.select_lime3ds_user_folder)
             .setPositiveButton(android.R.string.ok) { _: DialogInterface?, _: Int ->
                 homeViewModel.directoryListener?.onPressPositiveButton(
                     if (binding.checkBox.visibility != View.GONE) {
@@ -72,7 +72,7 @@ class CitraDirectoryDialogFragment : DialogFragment() {
     }
 
     companion object {
-        const val TAG = "citra_directory_dialog_fragment"
+        const val TAG = "lime3ds_directory_dialog_fragment"
         private const val MOVE_DATE_ENABLE = "IS_MODE_DATA_ENABLE"
         private const val PATH = "path"
 

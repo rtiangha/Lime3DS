@@ -117,7 +117,7 @@ enum class SystemInfoType {
      */
     NEW_3DS_INFO = 0x10001,
     /**
-     * Gets citra related information. This parameter is not available on real systems,
+     * Gets lime3ds related information. This parameter is not available on real systems,
      * but can be used by homebrew applications to get some emulator info.
      */
     LIME3DS_INFORMATION = 0x20000,
@@ -1779,7 +1779,7 @@ Result SVC::GetSystemInfo(s64* out, u32 type, s32 param) {
                            sizeof(s64));
             break;
         default:
-            LOG_ERROR(Kernel_SVC, "unknown GetSystemInfo citra info param={}", param);
+            LOG_ERROR(Kernel_SVC, "unknown GetSystemInfo lime3ds info param={}", param);
             *out = 0;
             break;
         }
