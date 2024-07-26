@@ -2837,8 +2837,9 @@ void GMainWindow::OnDumpVideo() {
         );
         auto result = message_box.exec();
         if (result == QMessageBox::Help) {
-            QDesktopServices::openUrl(QUrl(QStringLiteral(
-                "https://citra-emu.org/wiki/installing-ffmpeg-for-the-video-dumper/")));
+            QDesktopServices::openUrl(
+                QUrl(QStringLiteral("https://web.archive.org/web/20240301121456/https://"
+                                    "citra-emu.org/wiki/installing-ffmpeg-for-the-video-dumper/")));
 #ifdef _WIN32
         } else if (result == QMessageBox::Open) {
             OnOpenFFmpeg();
@@ -3208,7 +3209,7 @@ void GMainWindow::OnCoreError(Core::System::ResultStatus result, std::string det
     if (result == Core::System::ResultStatus::ErrorSystemFiles) {
         const QString common_message =
             tr("%1 is missing. Please <a "
-               "href='https://citra-emu.org/wiki/"
+               "https://web.archive.org/web/20240301100916/https://citra-emu.org/wiki/"
                "dumping-system-archives-and-the-shared-fonts-from-a-3ds-console/'>dump your "
                "system archives</a>.<br/>Continuing emulation may result in crashes and bugs.");
 
@@ -3234,11 +3235,12 @@ void GMainWindow::OnCoreError(Core::System::ResultStatus result, std::string det
         can_continue = false;
     } else {
         title = tr("Fatal Error");
-        message =
-            tr("A fatal error occurred. "
-               "<a href='https://community.citra-emu.org/t/how-to-upload-the-log-file/296'>Check "
-               "the log</a> for details."
-               "<br/>Continuing emulation may result in crashes and bugs.");
+        message = tr("A fatal error occurred. "
+                     "<a "
+                     "href='https://https://web.archive.org/web/20240105231121/https://"
+                     "community.citra-emu.org/t/how-to-upload-the-log-file/296'>Check "
+                     "the log</a> for details."
+                     "<br/>Continuing emulation may result in crashes and bugs.");
         status_message = tr("Fatal Error encountered");
         error_severity_icon = QMessageBox::Icon::Critical;
     }
