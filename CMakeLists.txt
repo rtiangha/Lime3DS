@@ -267,7 +267,9 @@ if (ENABLE_QT)
 endif()
 
 # Use system tsl::robin_map if available (otherwise we fallback to version bundled with dynarmic)
-find_package(tsl-robin-map QUIET)
+if (NOT DYNARMIC_USE_BUNDLED_EXTERNALS)
+    find_package(tsl-robin-map QUIET)
+endif()
 
 # Platform-specific library requirements
 # ======================================
