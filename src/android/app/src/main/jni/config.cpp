@@ -174,10 +174,15 @@ void Config::ReadValues() {
     ReadSetting("Renderer", Settings::values.bg_blue);
 
     // Layout
-    Settings::values.layout_option = static_cast<Settings::LayoutOption>(sdl2_config->GetInteger(
-        "Layout", "layout_option", static_cast<int>(Settings::LayoutOption::LargeScreen)));
-    Settings::values.large_screen_proportion =
-        static_cast<float>(sdl2_config->GetReal("Layout", "large_screen_proportion", 2.25));
+    // somewhat inelegant solution to ensure layout value is between 0 and 5 on read
+    // since older config files my have other values
+    int layoutInt = (int)sdl2_config->GetInteger(
+            "Layout", "layout_option", static_cast<int>(Settings::LayoutOption::LargeScreen));
+    if (layoutInt > 5 || layoutInt < 0) {
+        layoutInt = static_cast<int>(Settings::LayoutOption::LargeScreen);
+    }
+    Settings::values.layout_option = static_cast<Settings::LayoutOption>(layoutInt);
+    Settings::values.large_screen_proportion = static_cast<float>(sdl2_config->GetReal("Layout","large_screen_proportion",2.25));
     ReadSetting("Layout", Settings::values.custom_top_x);
     ReadSetting("Layout", Settings::values.custom_top_y);
     ReadSetting("Layout", Settings::values.custom_top_width);
