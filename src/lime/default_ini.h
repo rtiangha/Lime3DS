@@ -218,6 +218,12 @@ upright_screen =
 # Must be a real value between 1.0 and 16.0. Default is 4
 large_screen_proportion =
 
+# The location of the small screen relative to the large screen in large Screen layout
+# 0 is upper right, 1 is middle right, 2 is lower right
+# 3 is upper left, 4 is middle left, 5 is lower left
+# 6 is above the large screen, 7 is below the large screen
+small_screen_position =
+
 # Dumps textures as PNG to dump/textures/[Title ID]/.
 # 0 (default): Off, 1: On
 dump_textures =
