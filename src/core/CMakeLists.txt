@@ -490,7 +490,9 @@ target_link_libraries(lime_core PUBLIC lime_common PRIVATE audio_core network vi
 target_link_libraries(lime_core PRIVATE Boost::boost Boost::serialization Boost::iostreams httplib)
 target_link_libraries(lime_core PUBLIC dds-ktx PRIVATE cryptopp fmt lodepng open_source_archives)
 
-target_link_libraries(lime_core PUBLIC input_common)
+if (NOT ANDROID)
+    target_link_libraries(lime_core PUBLIC input_common)
+endif()
 
 if (ENABLE_WEB_SERVICE)
     target_link_libraries(lime_core PRIVATE web_service)
