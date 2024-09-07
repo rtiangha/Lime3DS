@@ -3,7 +3,7 @@
 
     <!-- General application strings -->
     <string name="app_name" translatable="false">Lime3DS</string>
-    <string name="app_disclaimer">This software will run games for the Nintendo 3DS handheld game console. No game titles are included.\n\nBefore you can begin with emulating, please select a folder to store Lime3DS\'s user data in.\n\nWhat\'s this:\n<a href='https://github.com/citra-emu/citra/wiki/Citra-Android-user-data-and-storage'>Wiki - Lime3DS Android user data and storage</a></string>
+    <string name="app_disclaimer">This software will run games for the Nintendo 3DS handheld game console. No game titles are included.\n\nBefore you can begin with emulating, please select a folder to store Lime3DS\'s user data in.\n\nWhat\'s this:\n<a href='https://web.archive.org/web/20240304193549/https://github.com/citra-emu/citra/wiki/Citra-Android-user-data-and-storage'>Wiki - Lime3DS Android user data and storage</a></string>
     <string name="app_notification_channel_name" translatable="false">Lime3DS</string>
     <string name="app_notification_channel_id" translatable="false">Lime3DS</string>
     <string name="app_notification_channel_description">Lime3DS emulator notifications</string>
@@ -30,10 +30,10 @@
     <string name="select_games_folder">Select Games Folder</string>
     <string name="select_games_folder_description">Allows Lime3DS to populate the games list</string>
     <string name="about">About</string>
-    <string name="citra_description">An open-source 3DS emulator</string>
+    <string name="lime3ds_description">An open-source 3DS emulator</string>
     <string name="about_description">Build version, credits, and more</string>
     <string name="games_dir_selected">Games directory selected</string>
-    <string name="select_citra_user_folder_home_description">Changes the files that Lime3DS uses to load games</string>
+    <string name="select_lime3ds_user_folder_home_description">Changes the files that Lime3DS uses to load games</string>
     <string name="theme_and_color_description">Modify the look of the app</string>
     <string name="install_cia_title">Install CIA</string>
 
@@ -83,16 +83,19 @@
     <string name="permission_denied">Permission denied</string>
     <string name="add_games_warning">Skip selecting games folder?</string>
     <string name="add_games_warning_description">Games won\'t be displayed in the Games list if a folder isn\'t selected.</string>
-    <string name="add_games_warning_help">https://citra-emu.org/wiki/dumping-game-cartridges/</string>
+    <string name="add_games_warning_help">https://web.archive.org/web/20240304210021/https://citra-emu.org/wiki/dumping-game-cartridges/</string>
     <string name="warning_help">Help</string>
     <string name="warning_skip">Skip</string>
     <string name="warning_cancel">Cancel</string>
-    <string name="select_citra_user_folder">Select User Folder</string>
-    <string name="select_citra_user_folder_description"><![CDATA[Select your <a href="https://github.com/citra-emu/citra/wiki/Citra-Android-user-data-and-storage">user data</a> directory with the button below.]]></string>
+    <string name="select_lime3ds_user_folder">Select User Folder</string>
+    <string name="select_lime3ds_user_folder_description"><![CDATA[Select your <a href="https://web.archive.org/web/20240304193549/https://github.com/citra-emu/citra/wiki/Citra-Android-user-data-and-storage">user data</a> directory with the button below.]]></string>
     <string name="select">Select</string>
     <string name="cannot_skip">You can\'t skip this step</string>
     <string name="cannot_skip_directory_description">This step is required to allow Lime3DS to work. Please select a directory and then you can continue.</string>
-    <string name="cannot_skip_directory_help">https://github.com/citra-emu/citra/wiki/Citra-Android-user-data-and-storage</string>
+    <string name="cannot_skip_directory_help">https://web.archive.org/web/20240304193549/https://github.com/citra-emu/citra/wiki/Citra-Android-user-data-and-storage</string>
+    <string name="set_up_theme_settings">Theme Settings</string>
+    <string name="setup_theme_settings_description">Configure your theme preferences for Lime3DS.</string>
+    <string name="setup_set_theme">Set Theme</string>
 
     <!-- Search Strings -->
     <string name="search_and_filter_games">Search and Filter Games</string>
@@ -146,7 +149,7 @@
     <string name="download">Download</string>
     <string name="start">Start</string>
     <string name="keys_missing">Lime3DS is missing keys to download system files.</string>
-    <string name="how_to_get_keys"><![CDATA[<a href="https://citra-emu.org/wiki/aes-keys/">How to get keys?</a>]]></string>
+    <string name="how_to_get_keys"><![CDATA[<a href="https://web.archive.org/web/20240304203412/https://citra-emu.org/wiki/aes-keys/">How to get keys?</a>]]></string>
     <string name="show_home_apps">Show HOME menu apps in games list</string>
     <string name="run_system_setup">Run System Setup when the HOME Menu is launched</string>
     <string name="system_type_minimal">Minimal</string>
@@ -296,7 +299,7 @@
     <string name="learn_more">Learn More</string>
     <string name="close">Close</string>
     <string name="reset_to_default">Reset to Default</string>
-    <string name="redump_games"><![CDATA[Please follow the guides to redump your <a href="https://citra-emu.org/wiki/dumping-game-cartridges/">game cartidges</a> or <a href="https://citra-emu.org/wiki/dumping-installed-titles/">installed titles</a>.]]></string>
+    <string name="redump_games"><![CDATA[Please follow the guides to redump your <a href="https://web.archive.org/web/20240304210021/https://citra-emu.org/wiki/dumping-game-cartridges/">game cartidges</a> or <a href="https://web.archive.org/web/20240304210011/https://citra-emu.org/wiki/dumping-installed-titles/">installed titles</a>.]]></string>
     <string name="option_default">Default</string>
     <string name="none">None</string>
     <string name="auto">Auto</string>
@@ -330,7 +333,7 @@
     <string name="preferences_audio">Audio</string>
     <string name="preferences_debug">Debug</string>
     <string name="preferences_theme">Theme and Color</string>
-
+    <string name="preferences_layout">Layout</string>
     <!-- ROM loading errors -->
     <string name="loader_error_encrypted">Your ROM is Encrypted</string>
     <string name="loader_error_invalid_format">Invalid ROM format</string>
@@ -359,12 +362,25 @@
     <string name="emulation_open_settings">Open Settings</string>
     <string name="emulation_open_cheats">Open Cheats</string>
     <string name="emulation_switch_screen_layout">Landscape Screen Layout</string>
-    <string name="emulation_screen_layout_landscape">Default</string>
+    <string name="emulation_switch_portrait_layout">Portrait Screen Layout</string>
+    <string name="emulation_screen_layout_largescreen">Large Screen</string>
     <string name="emulation_screen_layout_portrait">Portrait</string>
     <string name="emulation_screen_layout_single">Single Screen</string>
     <string name="emulation_screen_layout_sidebyside">Side by Side Screens</string>
     <string name="emulation_screen_layout_hybrid">Hybrid Screens</string>
-    <string name="emulation_cycle_landscape_layouts">Cycle Landscape Layouts</string>
+    <string name="emulation_screen_layout_original">Original</string>
+    <string name="emulation_portrait_layout_top_full">Default</string>
+    <string name="emulation_screen_layout_custom">Custom Layout</string>
+    <string name="emulation_adjust_custom_layout">Adjust Custom Layout in Settings</string>
+    <string name="emulation_landscape_custom_layout">Landscape Custom Layout</string>
+    <string name="emulation_portrait_custom_layout">Portrait Custom Layout</string>
+    <string name="emulation_top_screen">Top Screen</string>
+    <string name="emulation_bottom_screen">Bottom Screen</string>
+    <string name="emulation_custom_layout_x">X-Position</string>
+    <string name="emulation_custom_layout_y">Y-Position</string>
+    <string name="emulation_custom_layout_width">Width</string>
+    <string name="emulation_custom_layout_height">Height</string>
+    <string name="emulation_cycle_landscape_layouts">Cycle Layouts</string>
     <string name="emulation_swap_screens">Swap Screens</string>
     <string name="emulation_touch_overlay_reset">Reset Overlay</string>
     <string name="emulation_show_overlay">Show Overlay</string>
@@ -432,9 +448,12 @@
     <string name="fatal_error">Fatal Error</string>
     <string name="fatal_error_message">A fatal error occurred. Check the log for details.\nContinuing emulation may result in crashes and bugs.</string>
 
-    <!-- Disk shader cache -->
+    <!-- Disk Shader Cache -->
     <string name="preparing_shaders">Preparing Shaders</string>
     <string name="building_shaders">Building Shaders</string>
+
+    <!-- About Game Dialog -->
+    <string name="play">Play</string>
 
     <!-- Cheats -->
     <string name="cheats">Cheats</string>
@@ -478,13 +497,19 @@
     <string name="memory_petabyte">PB</string>
     <string name="memory_exabyte">EB</string>
 
-    <!-- Theme Modes -->
-    <string name="change_theme_mode">Change Theme Mode</string>
+    <!-- System theme -->
+    <string name="change_theme_mode">Theme Mode</string>
     <string name="theme_mode_follow_system">Follow System</string>
     <string name="theme_mode_light">Light</string>
     <string name="theme_mode_dark">Dark</string>
+
+    <!-- Material You theme -->
     <string name="material_you">Material You</string>
-    <string name="material_you_description">Use system colors across the app</string>
+    <string name="material_you_description">Use the operating system\'s color theme across the app (Overrides the "Theme Color" setting when enabled)</string>
+
+    <!-- Static theme color -->
+    <string name="static_theme_color">Theme Color</string>
+    <string name="static_theme_color_description">Change the color theme of the app\'s menus</string>
 
     <!-- Black backgrounds theme -->
     <string name="use_black_backgrounds">Black Backgrounds</string>
@@ -538,6 +563,7 @@
 
     <!-- Render 3D modes -->
     <string name="side_by_side">Side by Side</string>
+    <string name="reverse_side_by_side">Reverse Side by Side</string>
     <string name="anaglyph">Anaglyph</string>
     <string name="interlaced">Interlaced</string>
     <string name="reverse_interlaced">Reverse Interlaced</string>
@@ -714,5 +740,8 @@
     <string name="artic_base_connect_description">Connect to a real console that is running an Artic Base server</string>
     <string name="artic_base_connect">Connect to Artic Base</string>
     <string name="artic_base_enter_address">Enter Artic Base server address</string>
+    <string name="miscellaneous">Miscellaneous</string>
+    <string name="use_artic_base_controller">Use Artic Controller when connected to Artic Base Server</string>
+    <string name="use_artic_base_controller_desc">Use the controls provided by Artic Base Server when connected to it instead of the configured input device.</string>
 
 </resources>

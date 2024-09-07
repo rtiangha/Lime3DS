@@ -2,8 +2,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/CMakeModules)
 
 add_executable(lime-room
     precompiled_headers.h
-    lime-room.cpp
-    lime-room.rc
+    lime_room.cpp
+    lime_room.rc
 )
 
 set_target_properties(lime-room PROPERTIES OUTPUT_NAME "lime3ds-room")
@@ -25,7 +25,7 @@ if(UNIX AND NOT APPLE)
     install(TARGETS lime-room RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 endif()
 
-if (CITRA_USE_PRECOMPILED_HEADERS)
+if (LIME3DS_USE_PRECOMPILED_HEADERS)
     target_precompile_headers(lime-room PRIVATE precompiled_headers.h)
 endif()
 
